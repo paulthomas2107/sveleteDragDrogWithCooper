@@ -22,7 +22,13 @@
 			id: 2,
 			title: 'Blog Post 2',
 			description: 'Blog Post 2 Description',
-			tags: ['Development']
+			tags: ['Development', 'Coding']
+		},
+		{
+			id: 3,
+			title: 'Blog Post 3',
+			description: 'Make sure to subscribe !',
+			tags: ['Subscribe']
 		}
 	];
 
