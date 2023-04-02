@@ -1,13 +1,30 @@
-<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
+<script lang="ts">
+	import { dndzone } from 'svelte-dnd-action';
+	import { handle_promise } from 'svelte/internal';
+	let items = [
+		{
+			id: 1,
+			title: 'Blog Post 1'
+		}
+	];
+
+	const handleConsider = (evt: any) => {
+		console.log('consider');
+	};
+
+	const handleFinalize = (evt: any) => {
+		console.log('finalize');
+	};
+</script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-5">
-		<h1>Let's get cracking bones!</h1>
-		<p>Start by exploring:</p>
-		<ul>
-			<li><code>/src/routes/+layout.svelte</code> - barebones layout, the CSS import order is critical!</li>
-			<li><code>/src/app.postcss</code> - minimal css to make the page full screen, may not be relevant for your project</li>
-			<li><code>/src/routes/+page.svelte</code> - this page, you can replace the contents</li>
-		</ul>
-	</div>
+	<section use:dndzone={{ items: items }} on:consider={handleConsider} on:finalize={handleFinalize}>
+		{#each items as item (item.id)}
+			<div class="card card-hover w-96 my-4">
+				<header class="card-header">
+					<h4>{item.title}</h4>
+				</header>
+			</div>
+		{/each}
+	</section>
 </div>
