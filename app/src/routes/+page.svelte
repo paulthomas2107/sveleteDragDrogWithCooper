@@ -1,19 +1,33 @@
 <script lang="ts">
 	import { dndzone } from 'svelte-dnd-action';
-	import { handle_promise } from 'svelte/internal';
-	let items = [
+
+	interface ListItem {
+		id: number;
+		title: string;
+		description: string;
+	}
+
+	let items: ListItem[] = [
 		{
 			id: 1,
-			title: 'Blog Post 1'
+			title: 'Blog Post 1',
+			description: 'Blog Post 1 Description'
+		},
+		{
+			id: 2,
+			title: 'Blog Post 2',
+			description: 'Blog Post 2 Description'
 		}
 	];
 
-	const handleConsider = (evt: any) => {
+	const handleConsider = (evt: CustomEvent<DndEvent<ListItem>>) => {
 		console.log('consider');
+		items = evt.detail.items;
 	};
 
-	const handleFinalize = (evt: any) => {
+	const handleFinalize = (evt: CustomEvent<DndEvent<ListItem>>) => {
 		console.log('finalize');
+		items = evt.detail.items;
 	};
 </script>
 
